@@ -37,7 +37,7 @@ FILEBOT_CMD=$(\
 echo curl \
     --data-urlencode name=\"${ARG_NAME}\" \
     --data-urlencode path=\"${ARG_PATH}\" \
-    --data-urlencode label=\"${ARG_LABEL}\" \
+    --data-urlencode label=\"${FILEBOT_LABEL}\" \
     http://filebot:${FILEBOT_PORT}/amc)
 
 echo $FILEBOT_CMD >> /config/filebot.log
