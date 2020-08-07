@@ -22,6 +22,10 @@ RADARR_CATEGORY=${RADARR_CATEGORY:-"radarr"}
 RADARR_PORT=${RADARR_PORT:-""}
 RADARR_API_KEY=${RADARR_API_KEY:-""}
 
+LIDARR_CATEGORY=${LIDARR_CATEGORY:-"lidarr"}
+LIDARR_PORT=${LIDARR_PORT:-""}
+LIDARR_API_KEY=${LIDARR_API_KEY:-""}
+
 FILEBOT_LABEL=$ARG_LABEL
 case $ARG_CATEGORY in
     *$SONARR_CATEGORY*)
@@ -30,6 +34,10 @@ case $ARG_CATEGORY in
 
     *$RADARR_CATEGORY*)
         FILEBOT_LABEL="movie"
+    ;;
+
+    *$LIDARR_CATEGORY*)
+        FILEBOT_LABEL="music"
     ;;
 esac
 
@@ -58,6 +66,13 @@ case $ARG_CATEGORY in
         if [ $RADARR_PORT != "" ] && [ $RADARR_API_KEY != "" ]; then
             REFRESH_NAME="RescanMovie"
             REFRESH_URL="http://radarr:${RADARR_PORT}/api/command?apikey=${RADARR_API_KEY}"
+        fi
+    ;;
+
+    *$LIDARR_CATEGORY*)
+        if [ $LIDARR_PORT != "" ] && [ $LIDARR_API_KEY != "" ]; then
+            REFRESH_NAME="RescanArtist"
+            REFRESH_URL="http://radarr:${LIDARR_PORT}/api/v1/command?apikey=${LIDARR_API_KEY}"
         fi
     ;;
 esac
